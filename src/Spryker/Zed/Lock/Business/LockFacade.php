@@ -9,6 +9,7 @@ namespace Spryker\Zed\Lock\Business;
 
 use Generated\Shared\Transfer\LockTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
+use Symfony\Component\Lock\LockInterface;
 
 /**
  * @method \Spryker\Zed\Lock\Business\LockBusinessFactory getFactory()
@@ -41,5 +42,21 @@ class LockFacade extends AbstractFacade implements LockFacadeInterface
     public function releaseLock(LockTransfer $lockTransfer): LockTransfer
     {
         return $this->getFactory()->createLockMechanism()->releaseLock($lockTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param string $resource
+     * @param float $ttl
+     * @param bool $autoRelease
+     *
+     * @return \Symfony\Component\Lock\LockInterface
+     */
+    public function createLock(string $resource, float $ttl, bool $autoRelease = true): LockInterface
+    {
+        return $this->getFactory()->createLockFactory()->createLock($resource, $ttl, $autoRelease);
     }
 }

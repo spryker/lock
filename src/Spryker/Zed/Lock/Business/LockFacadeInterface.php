@@ -8,6 +8,7 @@
 namespace Spryker\Zed\Lock\Business;
 
 use Generated\Shared\Transfer\LockTransfer;
+use Symfony\Component\Lock\LockInterface;
 
 interface LockFacadeInterface
 {
@@ -38,4 +39,19 @@ interface LockFacadeInterface
      * @return \Generated\Shared\Transfer\LockTransfer
      */
     public function releaseLock(LockTransfer $lockTransfer): LockTransfer;
+
+    /**
+     * Specification:
+     * - Creates a Symfony lock for the given resource.
+     * - Use it if you need specifically Symfony lock instance.
+     *
+     * @api
+     *
+     * @param string $resource
+     * @param float $ttl
+     * @param bool $autoRelease
+     *
+     * @return \Symfony\Component\Lock\LockInterface
+     */
+    public function createLock(string $resource, float $ttl, bool $autoRelease = true): LockInterface;
 }

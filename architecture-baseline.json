@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "fileName": "src/Spryker/Zed/Lock/Business/LockFacade.php",
+        "description": "Zed Business Layer - Facade: The method `Spryker\\Zed\\Lock\\Business\\LockFacade::createLock()()` is using an invalid return type `\\Symfony\\Component\\Lock\\LockInterface` which violates the rule \"Every Facade should only return native types or transfer objects.\"",
+        "rule": "FacadeReturnValueRule",
+        "ruleset": "Spryker Zed",
+        "priority": "1"
+    }
+]
