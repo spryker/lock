@@ -21,11 +21,6 @@ class LockDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const CLIENT_STORAGE_REDIS = 'CLIENT_STORAGE_REDIS';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
@@ -34,11 +29,6 @@ class LockDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function addStorageRedisClient(Container $container): Container
     {
         $container->set(static::CLIENT_STORAGE_REDIS, function (Container $container) {

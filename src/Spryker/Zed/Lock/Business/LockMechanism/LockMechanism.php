@@ -23,18 +23,10 @@ class LockMechanism implements LockMechanismInterface
      */
     protected array $locks;
 
-    /**
-     * @param \Spryker\Zed\Lock\Business\LockFactory\LockFactoryInterface $lockFactory
-     */
     public function __construct(protected LockFactoryInterface $lockFactory)
     {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\LockTransfer $lockTransfer
-     *
-     * @return \Generated\Shared\Transfer\LockTransfer
-     */
     public function acquireLock(LockTransfer $lockTransfer): LockTransfer
     {
         $key = $this->generateLockKey($lockTransfer);
@@ -44,11 +36,6 @@ class LockMechanism implements LockMechanismInterface
         return $lockTransfer->setResult($lock->acquire($lockTransfer->getBlocking() ?? false));
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\LockTransfer $lockTransfer
-     *
-     * @return \Generated\Shared\Transfer\LockTransfer
-     */
     public function releaseLock(LockTransfer $lockTransfer): LockTransfer
     {
         $key = $this->generateLockKey($lockTransfer);
@@ -60,11 +47,6 @@ class LockMechanism implements LockMechanismInterface
         return $lockTransfer->setResult(true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\LockTransfer $lockTransfer
-     *
-     * @return string
-     */
     protected function generateLockKey(LockTransfer $lockTransfer): string
     {
         $lockTransfer->requireKey()

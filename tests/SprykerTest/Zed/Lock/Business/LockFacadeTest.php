@@ -32,9 +32,6 @@ class LockFacadeTest extends Unit
      */
     protected LockBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testAcquireLockReturnsTrueWhenLockIsAcquired(): void
     {
         // Arrange
@@ -57,9 +54,6 @@ class LockFacadeTest extends Unit
         $this->assertTrue($result->getResult());
     }
 
-    /**
-     * @return void
-     */
     public function testReleaseLockCallsReleaseLockOnMechanism(): void
     {
         // Arrange

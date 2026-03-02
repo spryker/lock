@@ -11,17 +11,7 @@ use Generated\Shared\Transfer\LockTransfer;
 
 interface LockMechanismInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\LockTransfer $lockTransfer
-     *
-     * @return \Generated\Shared\Transfer\LockTransfer
-     */
     public function acquireLock(LockTransfer $lockTransfer): LockTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\LockTransfer $lockTransfer
-     *
-     * @return \Generated\Shared\Transfer\LockTransfer
-     */
     public function releaseLock(LockTransfer $lockTransfer): LockTransfer;
 }

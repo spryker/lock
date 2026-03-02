@@ -28,10 +28,6 @@ class RedisStore implements SharedLockStoreInterface
      */
     protected float $initialTtl = 300.0;
 
-    /**
-     * @param \Spryker\Zed\Lock\Dependency\Client\LockToStorageRedisClientInterface $redis
-     * @param \Spryker\Zed\Lock\LockConfig $config
-     */
     public function __construct(
         protected LockToStorageRedisClientInterface $redis,
         protected LockConfig $config
@@ -174,11 +170,6 @@ class RedisStore implements SharedLockStoreInterface
         $this->checkNotExpired($key);
     }
 
-    /**
-     * @param \Symfony\Component\Lock\Key $key
-     *
-     * @return void
-     */
     public function delete(Key $key): void
     {
         $script = '
@@ -204,11 +195,6 @@ class RedisStore implements SharedLockStoreInterface
         $this->evaluate($script, (string)$key, [$this->getUniqueToken($key)]);
     }
 
-    /**
-     * @param \Symfony\Component\Lock\Key $key
-     *
-     * @return bool
-     */
     public function exists(Key $key): bool
     {
         $script = '
@@ -231,11 +217,6 @@ class RedisStore implements SharedLockStoreInterface
         return $this->evaluate($script, (string)$key, [microtime(true), $this->getUniqueToken($key)]);
     }
 
-    /**
-     * @param \Symfony\Component\Lock\Key $key
-     *
-     * @return string
-     */
     protected function getUniqueToken(Key $key): string
     {
         if (!$key->hasState(static::class)) {

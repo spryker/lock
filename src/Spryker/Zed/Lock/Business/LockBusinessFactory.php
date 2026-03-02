@@ -27,9 +27,6 @@ class LockBusinessFactory extends AbstractBusinessFactory
      */
     protected ?LockMechanismInterface $lockMechanism = null;
 
-    /**
-     * @return \Spryker\Zed\Lock\Business\LockMechanism\LockMechanismInterface
-     */
     public function createLockMechanism(): LockMechanismInterface
     {
         if ($this->lockMechanism === null) {
@@ -39,25 +36,16 @@ class LockBusinessFactory extends AbstractBusinessFactory
         return $this->lockMechanism;
     }
 
-    /**
-     * @return \Spryker\Zed\Lock\Business\LockFactory\LockFactoryInterface
-     */
     public function createLockFactory(): LockFactoryInterface
     {
         return new LockFactory($this->createDefaultStorage());
     }
 
-    /**
-     * @return \Symfony\Component\Lock\PersistingStoreInterface
-     */
     public function createDefaultStorage(): PersistingStoreInterface
     {
         return new RedisStore($this->getStorageRedisClient(), $this->getConfig());
     }
 
-    /**
-     * @return \Spryker\Zed\Lock\Dependency\Client\LockToStorageRedisClientInterface
-     */
     public function getStorageRedisClient(): LockToStorageRedisClientInterface
     {
         return $this->getProvidedDependency(LockDependencyProvider::CLIENT_STORAGE_REDIS);
