@@ -12,6 +12,8 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 class LockConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @var int Value in seconds
      */
     public const DEFAULT_LOCK_TIMEOUT = 30;
